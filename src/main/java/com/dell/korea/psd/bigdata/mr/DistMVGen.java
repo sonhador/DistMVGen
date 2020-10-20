@@ -57,8 +57,11 @@ public class DistMVGen {
     }
 
     private void generateFiles(String srcDir, int numFiles) throws InterruptedException {
-        for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < numFiles; i++) {
             fileGenQueue.add(i);
+        }
+
+        for (int i = 0; i < THREADS; i++) {
             threads.add(new Thread(new FileGen(srcDir)));
         }
 
